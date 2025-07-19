@@ -12,7 +12,7 @@ body, html {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: #3c3704;
+  background-color: #3d3c31;
 }
 img.eatable {
   position: absolute;
@@ -35,7 +35,7 @@ img.eatable {
   left: 50%;
   transform: translate(-50%, -50%) rotate(-5deg);
   font-size: 3rem;
-  color: red;
+  color: #D6F70B;
   font-weight: bold;
   font-family: "Comic Sans MS", cursive, sans-serif;
   display: none;
