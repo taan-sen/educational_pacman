@@ -59,3 +59,36 @@ img.eatable {
   background-color: #5c5618; /* subtle yellowish tint on dark bg */
   opacity: 0.3;
 }
+
+#reset-button {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 28px;
+  font-size: 1.5rem;
+  font-family: "Comic Sans MS", cursive;
+  background-color: #ffdf00;
+  color: #2e1e00;
+  border: 4px dashed #3c3704;
+  border-radius: 12px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  animation: wobble 1s infinite;
+  box-shadow: 4px 4px 0px #3c3704;
+  transition: transform 0.2s;
+}
+
+#reset-button:hover {
+  background-color: #fff176;
+  transform: translateX(-50%) scale(1.1);
+}
+
+@keyframes wobble {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(2deg); }
+  50% { transform: translateX(-50%) rotate(-2deg); }
+  75% { transform: translateX(-50%) rotate(2deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}

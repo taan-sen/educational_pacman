@@ -176,12 +176,18 @@ function growEater() {
   eater.style.height = `${currHeight + eaterGrowBy}px`;
 }
 
+const resetButton = document.getElementById('reset-button');
+resetButton.addEventListener('click', () => {
+  location.reload();
+});
+
 function checkGameOver() {
   if (targets.length === 0) {
     gameOverText.style.display = 'block';
     launchConfetti();
     fadeTrailDots();
     resetEaterPosition();
+    resetButton.style.display = 'block';
   }
 }
 function dropDot(x, y) {
@@ -199,30 +205,37 @@ function dropDot(x, y) {
   gameArea.appendChild(dot);
 }
 function launchConfetti() {
-  const duration = 3 * 1000;
-  const animationEnd = Date.now() + duration;
-  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+  const defaults = {
+    startVelocity: 25,
+    spread: 360,
+    ticks: 60,
+    zIndex: 999,
+    origin: { y: 0.6 }
+  };
 
-  const interval = setInterval(function() {
-    const timeLeft = animationEnd - Date.now();
-
-    if (timeLeft <= 0) {
-      return clearInterval(interval);
-    }
-
-    const particleCount = 50 * (timeLeft / duration);
+  setInterval(() => {
     confetti(Object.assign({}, defaults, {
-      particleCount,
+      particleCount: 30,
       origin: {
         x: Math.random(),
-        y: Math.random() - 0.2
+        y: Math.random() * 0.6
       }
     }));
-  }, 250);
+  }, 500); // Confetti burst every 0.5s
 }
 function fadeTrailDots() {
   const dots = document.querySelectorAll('.dot');
-  dots.forEach(dot => dot.classList.add('faded'));
+  dots.forEach(dot => {
+    dot.textContent = '✨'; // Change to '☠️' if you prefer skulls
+    dot.style.color = '#fffacd';        // Soft yellow
+    dot.style.fontSize = '12px';
+    dot.style.textAlign = 'center';
+    dot.style.lineHeight = '5px';
+    dot.style.background = 'none';
+    dot.style.width = '10px';           // slightly bigger for emoji
+    dot.style.height = '10px';
+    dot.style.opacity = '0.2';
+  });
 }
 
 function resetEaterPosition() {
